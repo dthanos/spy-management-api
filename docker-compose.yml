@@ -1,0 +1,65 @@
+version: '3.9'
+
+services:
+    dev-php:
+        build: ./docker/php/
+        container_name: spy-dev-php-container
+        restart: always
+#        expose:
+#            - 9000
+        ports:
+            - "8003:80"
+        # Starting the nginx reverse proxy and php-fpm services
+        # Running migrate refresh to populate the database
+        command: bash -c "service nginx start && php-fpm -F"
+        # Linking the entire project directory inside our container
+        volumes:
+            - ./:/var/www/spy
+        networks:
+            - internal
+        links:
+            - dev-mysql
+        depends_on:
+            - dev-mysql
+        entrypoint: ["/var/www/spy/entrypoint.sh"]
+    dev-mysql:
+        build: ./docker/mysql/
+        container_name: spy-dev-mariadb-container
+        restart: always
+        expose:
+            - 33063
+        ports:
+            - "33063:3306"
+        volumes:
+            - databaseVolume:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=3Zm9qy^32
+            - MYSQL_DATABASE=spy-dev
+            - MYSQL_USER=spy_usr_dev
+            - MYSQL_PASSWORD=3Zm9qy^32
+        networks:
+            - internal
+    dev-pma:
+        image: phpmyadmin
+        container_name: spy-dev-phpmyadmin-container
+        restart: always
+        depends_on:
+            - dev-mysql
+        ports:
+            - "38083:80"
+        environment:
+            - PMA_HOST=dev-mysql
+            - PMA_VERBOSE=spy
+            - PMA_PORT=3306
+            - PMA_USER=spy_usr_dev
+            - PMA_PASSWORD=3Zm9qy^32
+        networks:
+            - internal
+
+volumes:
+    databaseVolume: {}
+
+networks:
+  internal:
+    driver: bridge
+

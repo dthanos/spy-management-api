@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('spy')->group(function() {
-    Route::get('/', [SpyController::class, 'index']);
+    Route::get('/', [SpyController::class, 'index'])->middleware('auth');
     Route::get('{spy}', [SpyController::class, 'show']);
     Route::put('{spy}', [SpyController::class, 'update']);
     Route::post('/', [SpyController::class, 'store']);

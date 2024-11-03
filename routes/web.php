@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Mail\EntityNotification;
-use App\Models\Forecast;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 

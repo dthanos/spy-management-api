@@ -1,18 +1,17 @@
 <?php
 
-namespace App\ValueObjects;
+namespace App\Domain\ValueObjects;
 
+use app\Domain\Enums\Agency as AgencyEnum;
 use InvalidArgumentException;
 
 final class Agency
 {
-    private const VALID_AGENCIES = ['CIA', 'MI6', 'KGB'];
-
     private string $agency;
 
     public function __construct(string $agency)
     {
-        if (!in_array($agency, self::VALID_AGENCIES)) {
+        if (!in_array($agency, array_column(AgencyEnum::cases(), 'value'))) {
             throw new InvalidArgumentException("Invalid agency: {$agency}");
         }
         $this->agency = $agency;

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Domain\Models;
 
 use App\Domain\ValueObjects\Date;
-use App\ValueObjects\Agency;
-use App\ValueObjects\FullName;
+use App\Domain\ValueObjects\Agency;
+use App\Domain\ValueObjects\FullName;
 use Illuminate\Database\Eloquent\Model;
 
 class Spy extends Model

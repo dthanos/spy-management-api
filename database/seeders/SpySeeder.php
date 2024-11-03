@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\Agency;
-use App\Models\Spy;
+use app\Domain\Enums\Agency;
+use App\Domain\Models\Spy;
 use Illuminate\Database\Seeder;
 
 class SpySeeder extends Seeder

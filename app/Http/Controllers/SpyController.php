@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Application\Actions\CreateSpyAction;
+use App\Application\DTOs\SpyDTO;
+use App\Http\Requests\SpyCreateRequest;
 use App\Http\Resources\SpyResource;
-use App\Models\Spy;
+use App\Domain\Models\Spy;
 use Illuminate\Http\Request;
 
 class SpyController extends Controller
@@ -94,9 +97,20 @@ class SpyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SpyCreateRequest $request, CreateSpyAction $createSpyAction): SpyResource
     {
-        //
+        $spyDTO = new SpyDTO(
+            $request->input('name'),
+            $request->input('surname'),
+            $request->input('agency'),
+            $request->input('country_of_operation'),
+            $request->input('date_of_birth'),
+            $request->input('date_of_death')
+        );
+
+        $spy = $createSpyAction->execute($spyDTO);
+
+        return SpyResource::make($spy);
     }
 
     /**

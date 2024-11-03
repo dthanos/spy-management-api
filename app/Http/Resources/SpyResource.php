@@ -14,6 +14,18 @@ class SpyResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return
+            [
+                'id' => $this->id,
+                'name' => $this->name,
+                'surname' => $this->surname,
+                'agency' => $this->agency,
+                'country_of_operation' => $this->country_of_operation,
+                'date_of_birth' => $this->date_of_birth,
+                'date_of_death' => $this->date_of_death,
+
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
+            ];
     }
 }

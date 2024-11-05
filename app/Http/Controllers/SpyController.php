@@ -18,7 +18,6 @@ class SpyController extends Controller
     {
         $requestData = $request->all();
 
-
         // Define allowed sortable fields
         $sortableFields = [
             'full_name' => ['name', 'surname'],
@@ -95,17 +94,25 @@ class SpyController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function random(Request $request)
+    {
+        return SpyResource::collection(Spy::all()->random(5));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(SpyCreateRequest $request, CreateSpyAction $createSpyAction): SpyResource
     {
         $spyDTO = new SpyDTO(
-            $request->input('name'),
-            $request->input('surname'),
-            $request->input('agency'),
-            $request->input('country_of_operation'),
-            $request->input('date_of_birth'),
-            $request->input('date_of_death')
+            $request->validated('name'),
+            $request->validated('surname'),
+            $request->validated('agency'),
+            $request->validated('country_of_operation'),
+            $request->validated('date_of_birth'),
+            $request->validated('date_of_death')
         );
 
         $spy = $createSpyAction->execute($spyDTO);

@@ -17,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('spy')->group(function() {
-    Route::get('/', [SpyController::class, 'index'])->middleware('auth');
-    Route::get('{spy}', [SpyController::class, 'show']);
-    Route::put('{spy}', [SpyController::class, 'update']);
-    Route::post('/', [SpyController::class, 'store']);
-    Route::delete('{spy}', [SpyController::class, 'delete']);
+    Route::get('/', [SpyController::class, 'index']);
+    Route::get('random', [SpyController::class, 'random'])->middleware('throttle:10,1');
+//    Route::get('{spy}', [SpyController::class, 'show']);
+//    Route::put('{spy}', [SpyController::class, 'update']);
+    Route::post('/', [SpyController::class, 'store'])->middleware('auth');
+//    Route::delete('{spy}', [SpyController::class, 'delete']);
 });

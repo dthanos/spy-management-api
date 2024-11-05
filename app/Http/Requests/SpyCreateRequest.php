@@ -24,12 +24,19 @@ class SpyCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|unique:spies,name',
-            'surname' => 'required|string|unique:spies,surname',
+            'name' => 'required|string|unique:spies',
+            'surname' => 'required|string|unique:spies',
             'agency' => ['string', new Enum(Agency::class)],
             'country_of_operation' => 'nullable|string',
             'date_of_birth' => 'required|date|date_format:Y-m-d',
             'date_of_death' => 'nullable|date|date_format:Y-m-d|after:date_of_birth',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'agency' => "The provided agency is invalid. Supported agencies: ". implode(', ', array_column(Agency::cases(), 'value')),
         ];
     }
 }

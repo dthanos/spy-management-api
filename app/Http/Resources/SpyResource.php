@@ -19,10 +19,11 @@ class SpyResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->name,
                 'surname' => $this->surname,
+                'full_name' => $this->full_name->toString(),
                 'agency' => $this->agency,
                 'country_of_operation' => $this->country_of_operation,
-                'date_of_birth' => $this->date_of_birth,
-                'date_of_death' => $this->date_of_death,
+                'date_of_birth' => $this->date_of_birth->toString(),
+                'date_of_death' => $this->date_of_death?->toString(),
 
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,

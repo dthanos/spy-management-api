@@ -32,4 +32,9 @@ final class FullName
     {
         return $this->name === $other->name && $this->surname === $other->surname;
     }
+
+    public function toString(): string
+    {
+        return $this->getFullName();
+    }
 }

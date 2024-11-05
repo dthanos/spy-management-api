@@ -22,7 +22,7 @@ final class Date
 
     public function getDate(): string
     {
-        return $this->date->format('Y-m-d');
+        return $this->date;
     }
 
     public function isBefore(Date $other): bool
@@ -38,5 +38,10 @@ final class Date
     public function equals(Date $other): bool
     {
         return $this->date == $other->date;
+    }
+
+    public function toString(): ?string
+    {
+        return $this?->date->format('Y-m-d') ?? null;
     }
 }

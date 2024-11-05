@@ -3,7 +3,6 @@
 namespace App\Domain\Models;
 
 use App\Domain\ValueObjects\Date;
-use App\Domain\ValueObjects\Agency;
 use App\Domain\ValueObjects\FullName;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,19 +17,19 @@ class Spy extends Model
         return $this->fullName;
     }
 
-    public function getAgency(): Agency
+    public function getFullNameAttribute(): FullName
     {
-        return $this->agency;
+        return new FullName($this->attributes['name'], $this->attributes['surname']);
     }
 
-    public function getDateOfBirth(): Date
+    public function getDateOfBirthAttribute(): Date
     {
-        return $this->dateOfBirth;
+        return new Date($this->attributes['date_of_birth']);
     }
 
-    public function getDateOfDeath(): ?Date
+    public function getDateOfDeathAttribute(): ?Date
     {
-        return $this->dateOfDeath;
+        return $this->attributes['date_of_death'] ? new Date($this->attributes['date_of_death']) : null;
     }
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Domain\Models;
 
+use App\Domain\Events\SpyCreated;
 use App\Domain\ValueObjects\Date;
 use App\Domain\ValueObjects\FullName;
 use Illuminate\Database\Eloquent\Model;
@@ -12,9 +13,12 @@ class Spy extends Model
 
     protected $table = 'spies';
 
-    public function getFullName(): FullName
+    public static function boot()
     {
-        return $this->fullName;
+        parent::boot();
+
+        // Dispatch SpyCreated event after successful creation
+        static::created(fn (Spy $spy) => event(new SpyCreated($spy)));
     }
 
     public function getFullNameAttribute(): FullName

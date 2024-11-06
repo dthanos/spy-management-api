@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Application\Requests;
 
 use app\Domain\Enums\Agency;
 use Illuminate\Foundation\Http\FormRequest;

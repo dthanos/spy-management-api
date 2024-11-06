@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spy extends Model
 {
+    public static array $sortableFields = [
+        'full_name' => ['name', 'surname'],
+        'date_of_birth' => 'date_of_birth',
+        'date_of_death' => 'date_of_death',
+    ];
+    public static array $supportedFilters = ['age', 'name'];
     protected $fillable = ['name','surname','agency','country_of_operation','date_of_birth','date_of_death'];
 
     protected $table = 'spies';

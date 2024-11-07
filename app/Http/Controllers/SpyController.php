@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Application\Actions\CreateSpyAction;
 use App\Application\DTOs\SpyDTO;
 use App\Application\Queries\ListSpiesQuery;
-use App\Application\Requests\SpyCreateRequest;
+use App\Application\Requests\Spy\SpyCreateRequest;
+use App\Application\Requests\Spy\SpyListRequest;
 use App\Application\Resources\SpyResource;
 use App\Domain\Models\Spy;
 use App\Domain\Services\SpyService;
@@ -19,7 +20,7 @@ class SpyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(SpyListRequest $request)
     {
         // Check for unsupported filters - excluding sort parameters
         if (!empty(
@@ -31,11 +32,11 @@ class SpyController extends Controller
             throw new BadRequestHttpException('Unsupported filters: ' . implode(', ', $unsupportedFilters));
 
         $result = $this->spyService->list(new ListSpiesQuery(
-            $request->query('age'),
-            $request->query('name'),
-            $request->query('sortBy'),
-            $request->query('sortByDesc'),
-            $request->query('itemsPerPage')
+            $request->validated('age'),
+            $request->validated('name'),
+            $request->validated('sortBy'),
+            $request->validated('sortByDesc'),
+            $request->validated('itemsPerPage')
         ));
 
         return SpyResource::collection($result);

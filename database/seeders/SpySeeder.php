@@ -27,5 +27,26 @@ class SpySeeder extends Seeder
             'country_of_operation' => 'U.S.A',
             'date_of_birth' => '1990-01-01'
         ]);
+        Spy::query()->create([
+            'name' => 'Ethan',
+            'surname' => 'Hunt',
+            'agency' => Agency::MI6->value,
+            'country_of_operation' => 'Great Britain',
+            'date_of_birth' => '1980-01-01'
+        ]);
+        Spy::query()->create([
+            'name' => 'Jack',
+            'surname' => 'Ryan',
+            'agency' => Agency::CIA->value,
+            'country_of_operation' => 'U.S.A',
+            'date_of_birth' => '1980-01-01'
+        ]);
+        Spy::query()->create([
+            'name' => 'Natasha',
+            'surname' => 'Romanoff',
+            'agency' => Agency::KGB->value,
+            'country_of_operation' => 'Soviet Union',
+            'date_of_birth' => '1990-01-01'
+        ]);
     }
 }

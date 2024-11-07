@@ -1,0 +1,38 @@
+API Features and Filtering Options
+
+    - Extend the filtering functionality to include more search options.
+    - We could also use tools like Elasticsearch or Algolia for faster, more advanced search capabilities.
+    - We could also use one of Laravel great tools, Laravel Scout to achieve full-text search on our models.
+
+Improved Security and Authentication
+
+    - Role-Based Access Control (RBAC): Expand the authentication system to allow role-based access, where specific users can have different levels of access.
+        In Laravel we achieve such purpose using Guards. For ease-of-use, we could for example use the spatie/laravel-permission third party library.
+    - Implement OAuth2 and JWT tokens for better security in handling third-party integrations.
+
+Testing
+
+    - Increase unit and feature tests, especially for special cases and possible error scenarios.
+
+Logging, Monitoring, and Error Handling
+
+    - Implement a logging system (e.g. Sentry) to track and visualize application logs and errors.
+    - We could make further improvements on exception handling and also add more exception cases.
+
+Domain-Driven Design (DDD)
+
+    - Refine the existing value objects and add more depending on the new concepts introduced in the project.
+    - Separate domain logic from application logic even more by creating intermediary classes to handle data transformations between the application and domain layers.
+
+Infrastructure
+
+    - Index commonly queried fields(e.g. name, surname, date_of_birth) to improve query performance and achieve database optimization.
+
+Deployment
+
+    - We could use CI/CD tools (pipelines, jobs etc. if using GitLab) in order to achieve automatic deployment for specific scenarios..
+
+Documentation
+
+    - Document each component of the application thoroughly, especially the domain layer, to ensure the team understands the business logic.
+    - Use a documentation library for the API documentation(e.g. Swagger) so the front-end team has every detail they need to utilize every endpoint correctly.

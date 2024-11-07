@@ -1,0 +1,218 @@
+{
+	"info": {
+		"_postman_id": "96aa2015-a12d-4dd7-ad6d-8140de6b3380",
+		"name": "MyCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8549656",
+		"_collection_link": "https://dark-resonance-984402.postman.co/workspace/My-Workspace~f8b956fa-c390-4443-8b7c-f970e8a4bd5d/collection/8549656-96aa2015-a12d-4dd7-ad6d-8140de6b3380?action=share&source=collection_link&creator=8549656"
+	},
+	"item": [
+		{
+			"name": "Spy",
+			"item": [
+				{
+					"name": "Spies",
+					"item": [
+						{
+							"name": "Create Spy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"test10\",\r\n    \"surname\": \"test10\",\r\n    \"country_of_operation\": \"USA\",\r\n    \"agency\": \"MI6\",\r\n    \"date_of_birth\": \"2000-01-01\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8003/api/spy",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8003",
+									"path": [
+										"api",
+										"spy"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Spies",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8003/api/spy?sortBy=full_name&itemsPerPage=2&age=20-40&name=bo&page=1&sortByDesc=date_of_birth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8003",
+									"path": [
+										"api",
+										"spy"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "full_name"
+										},
+										{
+											"key": "itemsPerPage",
+											"value": "2"
+										},
+										{
+											"key": "age",
+											"value": "20-40"
+										},
+										{
+											"key": "name",
+											"value": "bo"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "sortByDesc",
+											"value": "date_of_birth"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get 5 random Spies",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8003/api/spy/random",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8003",
+									"path": [
+										"api",
+										"spy",
+										"random"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"auth": {
+						"type": "bearer",
+						"bearer": [
+							{
+								"key": "token",
+								"value": "3|mpejYGvqjiA2m0RT793e88uwWZPJampHfgvUD6vGb45b430d",
+								"type": "string"
+							}
+						]
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Register User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"tester\",\r\n    \"email\": \"tester@tester.com\",\r\n    \"password\": \"password\",\r\n    \"password_confirmation\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8003/auth/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8003",
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"tester@tester.com\",\r\n    \"password\": \"password\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8003/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8003",
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

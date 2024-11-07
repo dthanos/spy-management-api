@@ -9,9 +9,7 @@ use App\Application\DTOs\SpyDTO;
 class CreateSpyHandler
 {
     public function __construct(private readonly CreateSpyAction $createSpyAction)
-    {
-        parent::__construct();
-    }
+    {}
 
     public function handle(CreateSpyCommand $command): void
     {

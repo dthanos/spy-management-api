@@ -19,6 +19,7 @@ readonly class SpyService
             'name' => $spyData->name,
             'surname' => $spyData->surname,
             'agency' => $spyData->agency,
+            'country_of_operation' => $spyData->country_of_operation,
             'date_of_birth' => $spyData->date_of_birth,
             'date_of_death' => $spyData->date_of_death,
         ]);

@@ -26,7 +26,7 @@ class SpyController extends Controller
             $unsupportedFilters = array_filter(array_diff(
                 array_keys($request->query()),
                 array_merge(array_keys(Spy::$sortableFields), Spy::$supportedFilters)
-            ), fn ($key) => !str_contains($key, 'sortBy') && $key !== 'itemsPerPage')
+            ), fn ($key) => !str_contains($key, 'sortBy') && $key !== 'itemsPerPage' && $key !== 'page')
         ))
             throw new BadRequestHttpException('Unsupported filters: ' . implode(', ', $unsupportedFilters));
 
@@ -46,7 +46,7 @@ class SpyController extends Controller
      */
     public function random(Request $request)
     {
-        return SpyResource::collection(Spy::all()->random(5));
+        return SpyResource::collection(Spy::query()->limit(5)->inRandomOrder()->get());
     }
 
     /**
